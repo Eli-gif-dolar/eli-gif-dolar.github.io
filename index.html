@@ -113,10 +113,10 @@
     <p>E mesmo nos dias difíceis — com gráficos confusos ou exames assustadores — eu sei que a gente vai continuar escolhendo uma à outra, todos os dias. Porque nosso amor é maior que qualquer obstáculo.</p>
     <p>Obrigada por ser meu lar, minha parceira de vida e minha melhor amiga. Eu amo você mais do que qualquer HTML consegue expressar. 💻❤️</p>
     <p onclick="alert('Obrigada por ser a melhor coisa que aconteceu.')" style="cursor:pointer; font-weight: bold; color: #d94f70;">💬 Clique aqui</p>
-    <button onclick="document.getElementById('bg-music').play()">🎵 Tocar nossa música</button>
+    <button id="play-btn">🎵 Tocar nossa música</button>
   </div>
 
-  <audio id="bg-music" loop preload="auto">
+  <audio id="bg-music" loop preload="auto" muted>
     <source src="acima-do-sol.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
@@ -136,6 +136,20 @@
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 5000);
     }, 800);
+
+    // tocar música com clique
+    const music = document.getElementById("bg-music");
+    const playBtn = document.getElementById("play-btn");
+
+    playBtn.addEventListener("click", () => {
+      music.muted = false;
+      music.play().catch((e) => console.log("Bloqueado:", e));
+    });
+
+    document.addEventListener("click", () => {
+      music.muted = false;
+      music.play().catch(() => {});
+    }, { once: true });
   </script>
 
 </body>
