@@ -18,6 +18,7 @@
       height: 100vh;
       position: relative;
       animation: zoomIn 2s ease-out;
+      z-index: 0;
     }
 
     @keyframes zoomIn {
@@ -35,6 +36,7 @@
       text-align: center;
       color: #fff;
       padding: 20px;
+      z-index: 0;
     }
 
     .overlay h1 {
@@ -51,6 +53,7 @@
       padding: 50px;
       text-align: center;
       position: relative;
+      z-index: 10;
     }
 
     .content p {
@@ -79,6 +82,8 @@
       margin-top: 20px;
       border-radius: 10px;
       cursor: pointer;
+      position: relative;
+      z-index: 11;
     }
 
     footer {
