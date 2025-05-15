@@ -13,7 +13,7 @@
     }
 
     .hero {
-      background: url('https://raw.githubusercontent.com/Eli-gif-dolar/eliparaisabella.github.io/main/babie.png') no-repeat center center;
+      background: url('https://raw.githubusercontent.com/Eli-gif-dolar/eli-gif-dolar.github.io/main/babie.png') no-repeat center center;
       background-size: cover;
       height: 100vh;
       position: relative;
@@ -113,10 +113,10 @@
     <p>E mesmo nos dias difíceis — com gráficos confusos ou exames assustadores — eu sei que a gente vai continuar escolhendo uma à outra, todos os dias. Porque nosso amor é maior que qualquer obstáculo.</p>
     <p>Obrigada por ser meu lar, minha parceira de vida e minha melhor amiga. Eu amo você mais do que qualquer HTML consegue expressar. 💻❤️</p>
     <p onclick="alert('Obrigada por ser a melhor coisa que aconteceu.')" style="cursor:pointer; font-weight: bold; color: #d94f70;">💬 Clique aqui</p>
-    <button onclick="toggleMusic()">🎵 Tocar nossa música</button>
+    <button onclick="toggleMusic()">🎵 Play/Pause</button>
   </div>
 
-  <audio id="bg-music" loop>
+  <audio id="bg-music" loop preload="auto">
     <source src="https://dl.dropboxusercontent.com/s/3v4r9x58j9xvqtx/skank-acima-do-sol.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
@@ -128,15 +128,29 @@
   <script>
     const music = document.getElementById("bg-music");
     let isPlaying = false;
+
     function toggleMusic() {
       if (isPlaying) {
         music.pause();
         isPlaying = false;
       } else {
-        music.play();
+        music.play().catch(err => console.log('Bloqueado até clicar!'));
         isPlaying = true;
       }
     }
+
+    // tenta autoplay ao carregar
+    document.addEventListener("DOMContentLoaded", () => {
+      const tryAuto = () => {
+        music.play().then(() => {
+          isPlaying = true;
+        }).catch(() => {
+          console.log("Autoplay bloqueado, clique no botão para ouvir.");
+        });
+      };
+
+      setTimeout(tryAuto, 500); // atraso para evitar bloqueio agressivo
+    });
 
     // corações flutuando
     const emojis = ['❤️', '💘', '💵', '🧠'];
