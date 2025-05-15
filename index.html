@@ -11,6 +11,7 @@
       color: #432c2c;
       overflow-x: hidden;
     }
+
     .hero {
       background: url('babie.png') no-repeat center center;
       background-size: cover;
@@ -19,10 +20,12 @@
       animation: zoomIn 2s ease-out;
       z-index: 0;
     }
+
     @keyframes zoomIn {
       from { transform: scale(1.1); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
+
     .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -35,20 +38,24 @@
       padding: 20px;
       z-index: 0;
     }
+
     .overlay h1 {
       font-size: 3em;
       animation: fadeInDown 2s ease-in-out;
     }
+
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-50px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     .content {
       padding: 50px;
       text-align: center;
       position: relative;
       z-index: 10;
     }
+
     .content p {
       font-size: 1.4em;
       max-width: 700px;
@@ -57,12 +64,15 @@
       opacity: 0;
       animation: fadeInText 2s forwards;
     }
+
     .content p:nth-child(2) { animation-delay: 2s; }
     .content p:nth-child(3) { animation-delay: 4s; }
     .content p:nth-child(4) { animation-delay: 6s; }
+
     @keyframes fadeInText {
       to { opacity: 1; }
     }
+
     button {
       background-color: #d94f70;
       border: none;
@@ -75,46 +85,59 @@
       position: relative;
       z-index: 11;
     }
+
     footer {
       text-align: center;
       margin-top: 60px;
       font-size: 0.9em;
       color: #999;
     }
+
     .emoji-float {
       position: fixed;
       font-size: 24px;
       animation: floatUp 5s infinite;
     }
+
     @keyframes floatUp {
       from { transform: translateY(100vh) scale(1); opacity: 1; }
       to { transform: translateY(-10vh) scale(1.5); opacity: 0; }
     }
+
+    /* Esconde o player nativo */
+    #bg-music {
+      display: none;
+    }
   </style>
 </head>
 <body>
+
   <div class="hero">
     <div class="overlay">
       <h1>Nosso mundo, do nosso jeito 💞</h1>
     </div>
   </div>
+
   <div class="content">
-    <p>Isabella, essa página é só nossa. Cada imagem, um pedacinho dos nossos sonhos. Desde os cafés na cama até os planos de rodar o mundo de van, casar na praia, morar em outro país, brindar com vinho ou sushi — tudo isso é possível, porque é com você.</p>
-    <p>E mesmo nos dias difíceis — com gráficos confusos ou exames assustadores — eu sei que a gente vai continuar escolhendo uma à outra, todos os dias. Porque nosso amor é maior que qualquer obstáculo.</p>
+    <p>Isabella, essa página é só nossa. Cada imagem, um pedacinho dos nossos sonhos. Desde os cafés na cama até os planos de rodar o mundo de van, casar na praia, morar em outro país, brindar com vinho ou sushi — tudo isso é possível, porque é com você.</p>
+    <p>E mesmo nos dias difíceis — com gráficos confusos ou exames assustadores — eu sei que a gente vai continuar escolhendo uma à outra, todos os dias. Porque nosso amor é maior que qualquer obstáculo.</p>
     <p>Obrigada por ser meu lar, minha parceira de vida e minha melhor amiga. Eu amo você mais do que qualquer HTML consegue expressar. 💻❤️</p>
     <p onclick="alert('Obrigada por ser a melhor coisa que aconteceu.')" style="cursor:pointer; font-weight: bold; color: #d94f70;">💬 Clique aqui</p>
     <button id="play-btn">🎵 Tocar nossa música</button>
   </div>
-  <!-- áudio usando nome original do arquivo -->
-  <audio id="bg-music" loop preload="auto" controls>
-    <source src="Skank - Acima do Sol (Ao Vivo em Ouro Preto).mp3" type="audio/mpeg">
+
+  <!-- Player escondido -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="Skank%20-%20Acima%20do%20Sol%20%28Ao%20Vivo%20em%20Ouro%20Preto%29.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
+
   <footer>
-    Feito com amor por Eli para Isabella – 2025 🌺💵
+    Feito com amor por Eli para Isabella – 2025 🌺💵
   </footer>
+
   <script>
-    // corações flutuantes
+    // Corações flutuantes
     const emojis = ['❤️', '💘', '💵', '🧠'];
     setInterval(() => {
       const el = document.createElement('div');
@@ -124,11 +147,13 @@
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 5000);
     }, 800);
-    // play no clique
+
+    // Tocar música no clique
     const music = document.getElementById("bg-music");
     document.getElementById("play-btn").addEventListener("click", () => {
-      music.play().catch(e => console.log('Erro ao falar áudio:', e));
+      music.play().catch(e => console.log('Erro ao tocar áudio:', e));
     });
   </script>
+
 </body>
 </html>
