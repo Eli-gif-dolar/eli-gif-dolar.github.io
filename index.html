@@ -121,7 +121,8 @@
     <button id="play-btn">🎵 Tocar nossa música</button>
   </div>
 
-  <audio id="bg-music" loop preload="auto" muted>
+  <!-- Player com controles nativos para teste -->
+  <audio id="bg-music" loop preload="auto" controls>
     <source src="acima-do-sol.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
@@ -147,14 +148,8 @@
     const playBtn = document.getElementById("play-btn");
 
     playBtn.addEventListener("click", () => {
-      music.muted = false;
-      music.play().catch((e) => console.log("Bloqueado:", e));
+      music.play().catch((e) => console.log("Erro ao tocar áudio:", e));
     });
-
-    document.addEventListener("click", () => {
-      music.muted = false;
-      music.play().catch(() => {});
-    }, { once: true });
   </script>
 
 </body>
